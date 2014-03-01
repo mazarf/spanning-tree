@@ -26,6 +26,7 @@ class Edge
 		bool operator<(Edge v); // for heap
 		bool operator<=(Edge v);
 		bool operator>(Edge v);
+		bool operator==(Edge v);
 		
 }; // Edge
 
@@ -120,4 +121,13 @@ bool Edge::operator>(Edge v)
 	else
 		return false;
 }
+
+bool Edge::operator==(Edge v)
+{
+	if(source == v.source && dest == v.dest && weight == v.weight)
+		return true;
+	else
+		return false;
+}
+
 #endif

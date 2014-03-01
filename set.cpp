@@ -87,27 +87,25 @@ class set
 		int index = -1;
 		
 		for(int i = 0; i < n; i++)
-			if( ar[i] < 0 && -ar[i] < smallest)
+			if( ar[i] < 0 )
 			{
 				if(smallest == 4e8) // proceed normally
 				{	
 					smallest = -ar[i];
 					index = i;
 				}
-				else
+				else if(-ar[i] < smallest)
 				{
-					if(-ar[i] == smallest && min(index) < min(i)) // determine which has the smallest vertex
-					{
-						continue; // skip
-					}
-					else
-					{
-						smallest = -ar[i];
-						index = i;
-					}
-				} // else if
-			} // if
-		
+					smallest = -ar[i];
+					index = i;
+				}
+				else if(-ar[i] == smallest && min(i) < min(index))
+				{
+					smallest = -ar[i];
+					index = i;
+				}
+			}
+			
 		return index;
 	}
 	

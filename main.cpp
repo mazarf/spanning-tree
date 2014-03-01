@@ -21,10 +21,20 @@ int main()
 	set regions(n);
 	
 	for(int i = 0; i < e; i++) // get all edges
+	{
 		cin >> edges[i].source
 			>> edges[i].dest
 			>> edges[i].weight;
 			
+		if(edges[i].source > edges[i].dest) // switch
+		{
+			int temp = edges[i].source;
+			edges[i].source = edges[i].dest;
+			edges[i].dest = temp;
+		}
+			
+	}
+	
 	// inputs stored
 			
 	// sort the edges
