@@ -11,7 +11,14 @@ int main()
 	
 	int source[e], dest[e], weight[e];
 	for(int i = 0; i < e; i++)
+	{
 		cin >> source[i] >> dest[i] >> weight[i];
+		if(source[i] == dest[i])
+		{
+			cout << "Found self loop." << endl;
+			return 0;
+		}
+	}
 	
 	Graph g(n);
 	
