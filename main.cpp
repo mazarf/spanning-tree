@@ -50,7 +50,7 @@ int main()
 	{
 		temp[i] = h.top();
 		h.pop();
-	}
+	} 
 	
 	delete[] edges;
 	edges = temp; // now edges contains the list
@@ -116,6 +116,11 @@ void minCost(Edge *edges, Edge *spanTree, set& regions, int e, int n, int &spanE
 		
 	} // while
 	
+	//for(int i = 0; i < treeSize; i++)
+	//{
+	//	edges[i].region = find(edges[i].source);
+	//} // assign a region to each edge
+	
 	spanEdges = treeSize; // keep track of edges in spantree
 	
 } // minCost
@@ -135,6 +140,7 @@ void printTree(Edge *spanTree, int spanEdges, set& regions, int n)
 		int root = regions.findNextMin();
 		Heap<Edge> h;
 		
+		if(regions.ar[root] != -1) {
 		for(int j = 0; j < spanEdges; j++)
 		{
 			if(regions.find(spanTree[j].source) == root)
@@ -142,7 +148,7 @@ void printTree(Edge *spanTree, int spanEdges, set& regions, int n)
 				h.push(spanTree[j]);
 			}
 		}
-		
+	}
 		cout << "<region>" << endl;
 		
 		while(!h.empty())

@@ -19,6 +19,7 @@ class Edge
 		int source;
 		int dest;
 		int weight;
+		//int region;
 		
 		int min(int s, int t);
 		int max(int s, int t);
@@ -37,11 +38,13 @@ Edge::Edge(int value, int wt, int src)
 	dest = value;
 	weight = wt;
 	source = src;
+	//region = -1;
 	
 } // constructor
 
 Edge::Edge()
 {
+	//region = -1;
 };
 
 int Edge::min(int s, int t)
@@ -66,13 +69,13 @@ bool Edge::operator<(Edge v)
 		return true;
 	else if(weight == v.weight)
 	{
-		if(min(source, dest) < min(v.source, v.dest))
+		if(min(source, dest) < v.min(v.source, v.dest))
 		{
 			return true;
 		}
-		else if(min(source,dest) == min(v.source, v.dest))
+		else if(min(source,dest) == v.min(v.source, v.dest))
 		{
-			if(max(source, dest) < max(v.source, v.dest))
+			if(max(source, dest) < v.max(v.source, v.dest))
 			{
 				return true;
 			}
@@ -88,9 +91,9 @@ bool Edge::operator<(Edge v)
 
 bool Edge::operator<=(Edge v)
 {
-	if(weight < v.weight)
+	if((*this) < v)
 		return true;
-	else if( weight == v.weight && source == v.source && dest == v.dest )
+	else if( (*this) == v )
 		return true;
 	else
 		return false;
@@ -102,13 +105,13 @@ bool Edge::operator>(Edge v)
 		return true;
 	else if(weight == v.weight)
 	{
-		if(min(source, dest) > min(v.source, v.dest))
+		if(min(source, dest) > v.min(v.source, v.dest))
 		{
 			return true;
 		}
-		else if(min(source,dest) == min(v.source, v.dest))
+		else if(min(source,dest) == v.min(v.source, v.dest))
 		{
-			if(max(source, dest) > max(v.source, v.dest))
+			if(max(source, dest) > v.max(v.source, v.dest))
 			{
 				return true;
 			}

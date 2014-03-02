@@ -104,6 +104,10 @@ class set
 					smallest = -ar[i];
 					index = i;
 				}
+				
+				if (smallest == 1)
+					return index; // no edges
+								  // save time
 			}
 			
 		return index;
